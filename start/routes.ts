@@ -28,3 +28,7 @@ router
     router.post('logout', [controllers.Session, 'destroy'])
   })
   .use(middleware.auth())
+
+router.get('/movies', async (ctx) => {
+  return 'my-awesome-movies'
+})
