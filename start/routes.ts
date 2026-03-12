@@ -30,5 +30,5 @@ router
   .use(middleware.auth())
 
 router.get('/movies', async (ctx) => {
-  return 'my-awesome-movies'
+  return ctx.view.render('pages/movies')
 })
