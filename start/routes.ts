@@ -10,7 +10,8 @@
 import { middleware } from '#start/kernel'
 import { controllers } from '#generated/controllers'
 import router from '@adonisjs/core/services/router'
-
+import app from '@adonisjs/core/services/app'
+import fs from 'node:fs/promises'
 router.on('/').render('pages/home').as('home')
 
 router
@@ -29,6 +30,8 @@ router
   })
   .use(middleware.auth())
 
-router.get('/movies', async (ctx) => {
-  return ctx.view.render('pages/movies')
-})
+router
+  .get('/movies/:slug', async (ctx) => {
+    return ctx.view.render('pages/movies', { movie: ctx.params.slug })
+  })
+  .as('movies.show')
